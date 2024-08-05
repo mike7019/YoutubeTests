@@ -9,6 +9,11 @@ import static net.serenitybdd.core.Serenity.getDriver;
 
 public class Hooks {
 
+    /**
+     * Sets up the stage for the test scenario.
+     * This method is called before each test case to initialize the stage.
+     * The stage is set using the OnlineCast class, which allows for online testing of the application.
+     */
     @Before
     public void setTheStage(){
         OnStage.setTheStage(new OnlineCast());

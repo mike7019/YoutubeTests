@@ -15,6 +15,12 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class SearchTheSong implements Task {
 
+    /**
+     * The SearchOnYoutubeModel variable is an object that represents the search criteria for searching songs on Youtube. It is used in the SearchTheSong class to perform a search
+     *  on Youtube.
+     * @see SearchTheSong
+     * @see PressKey
+     */
     protected SearchOnYoutubeModel searchOnYoutubeModel;
 
     public SearchTheSong(SearchOnYoutubeModel searchOnYoutubeModel) {

@@ -24,9 +24,13 @@ public class ChooseFromSongs implements Interaction {
         this.element = element;
     }
 
+    /**
+     * Performs the click action on the given actor.
+     *
+     * @param actor the actor to perform the action on
+     */
     @Override
     public <T extends Actor> void performAs(T actor) {
-       // List<WebElement> songs = element.resolveFor(actor).findElements(By.xpath(XPATH_SONGS));
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", XPATH_SONGS);
 

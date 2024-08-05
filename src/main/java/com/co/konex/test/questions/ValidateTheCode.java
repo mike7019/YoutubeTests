@@ -12,6 +12,12 @@ public class ValidateTheCode implements Question<Boolean> {
         this.element = element;
     }
 
+    /**
+     * Checks if the given element is displayed on the user interface
+     *
+     * @param actor the actor who will perform the verification
+     * @return true if the element is displayed, false otherwise
+     */
     @Override
     public Boolean answeredBy(Actor actor) {
         return element.resolveFor(actor).isDisplayed();

@@ -17,8 +17,16 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class SignIn implements Interaction {
 
+    /**
+     * This variable is an instance of the Faker class that is used to generate fake data for testing purposes.
+     */
     protected Faker faker = new Faker();
 
+    /**
+     * Performs the sign up process on the site.
+     *
+     * @param actor the actor performing the sign up process
+     */
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
@@ -46,6 +54,11 @@ public class SignIn implements Interaction {
                 );
     }
 
+    /**
+     * This method returns an instance of the SignIn class as an Instrumented object with properties.
+     *
+     * @return An instance of the SignIn class as an Instrumented object with properties.
+     */
     public static SignIn onTheSite() {
         return Instrumented.instanceOf(SignIn.class).withProperties();
     }

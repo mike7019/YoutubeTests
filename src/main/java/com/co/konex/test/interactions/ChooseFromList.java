@@ -19,6 +19,11 @@ public class ChooseFromList implements Interaction {
         this.index = index;
     }
 
+    /**
+     * Performs the action of choosing an option from a ul/li list.
+     *
+     * @param actor the actor performing the action
+     */
     @Override
     public <T extends Actor> void performAs(T actor) {
         List<WebElement> options = lstTypeAcc.resolveFor(actor).findElements(By.tagName("li"));

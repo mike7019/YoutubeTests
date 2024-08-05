@@ -10,12 +10,20 @@ import static net.serenitybdd.core.Serenity.getDriver;
 
 public class PressKey implements Interaction {
 
+    /**
+     * The `key` variable represents a key used for interaction in the PressKey class.
+     */
     protected Keys key;
 
     public PressKey(Keys key) {
         this.key = key;
     }
 
+    /**
+     * Performs a key press action for the given actor.
+     *
+     * @param actor the actor who performs the action
+     */
     @Override
     public <T extends Actor> void performAs(T actor) {
         Actions action = new Actions(getDriver());

@@ -21,6 +21,11 @@ public class ScrollToElement implements Interaction {
         this.element = element;
     }
 
+    /**
+     * This method is used to scroll the web page so that the specified element becomes visible.
+     *
+     * @param actor the actor performing the action
+     */
     @Override
     public <T extends Actor> void performAs(T actor) {
         WebElement object = element.resolveFor(actor);
