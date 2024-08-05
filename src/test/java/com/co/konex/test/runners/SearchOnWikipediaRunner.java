@@ -6,9 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/fillTheForm.feature",
+        features = "src/test/resources/features/searchOnWikipedia.feature",
         glue = "com.co.konex.test.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class FillTheFormRunner {
+
+public class SearchOnWikipediaRunner {
 }

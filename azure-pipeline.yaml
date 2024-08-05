@@ -1,18 +1,70 @@
 trigger:
-  - master
+  branches:
+    include:
+      - master
 
-pool: 'Agent_Aut'
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
 
 steps:
-  - task: Gradle@2
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
     inputs:
-      workingDirectory: ''
+      SonarCloud: 'TokenSonar'
+      organization: 'automation7019'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'automation7019'
+      cliProjectName: '$(Build.Repository.Name)'
+      extraProperties: |
+        sonar.language=java
+        sonar.sources=$(Build.SourcesDirectory)/src/main/java
+        sonar.tests=$(Build.SourcesDirectory)/src/test/java
+        sonar.java.binaries=$(Build.SourcesDirectory)/build/classes
+        sonar.sourceEncoding=UTF-8
+        sonar.projectVersion=1.0
+
+  - task: Gradle@2
+    displayName: 'gradlew clean build -x test'
+    inputs:
       gradleWrapperFile: 'gradlew'
-      gradleOptions: '-Xmx3072m'
+      options: '-Dorg.gradle.daemon=false'
+      tasks: 'clean build -x test'
+      publishJUnitResults: false
       javaHomeOption: 'JDKVersion'
       jdkVersionOption: '11'
       jdkArchitectureOption: 'x64'
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+    inputs:
+      jdkversion: 'JAVA_HOME_11_X64'
+
+  - task: Gradle@2
+    displayName: 'gradlew clean test'
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      options: '-Dorg.gradle.daemon=false -Xmx3072m'
+      tasks: 'clean test'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
-      tasks: 'clean test'
-      options: '-Dwebdriver.remote.url=http://127.0.0.1:8085'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '11'
+      jdkArchitectureOption: 'x64'
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files'
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: |
+        **/*
+        !build
+      TargetFolder: '$(build.artifactstagingdirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      ArtifactName: project

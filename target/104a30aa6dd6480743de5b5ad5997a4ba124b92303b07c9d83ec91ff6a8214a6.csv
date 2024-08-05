@@ -1,2 +1,5 @@
 "Story","Title","Result","Date","Stability","Duration (s)"
-"Search and validation on Youtube","Successful search and validation on the site","ERROR","2024-08-04T23:26:52.5745012-05:00[America/Bogota]","0.0","1.92"
+"validating the Wikipedia Welcome header","Heading to wikipedia.org","SUCCESS","2024-08-05T13:34:27.8003187-05:00[America/Bogota]","0.0","3.41"
+"validating the Wikipedia Welcome header","filling out the login form","SUCCESS","2024-08-05T13:34:31.2430631-05:00[America/Bogota]","0.0","1.29"
+"validating the Wikipedia Welcome header","Heading to wikipedia.org","SUCCESS","2024-08-05T14:14:07.9930084-05:00[America/Bogota]","0.0","4.2"
+"validating the Wikipedia Welcome header","searching and validating a keyword","SUCCESS","2024-08-05T14:14:12.2455538-05:00[America/Bogota]","0.0","5.87"
