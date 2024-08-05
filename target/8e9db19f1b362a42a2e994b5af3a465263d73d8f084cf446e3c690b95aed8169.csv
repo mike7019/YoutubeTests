@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"filling the form on Youtube","filling out the login form","FAILURE","2024-08-04T23:18:56.326225-05:00[America/Bogota]","0.0","20.8"
+"Search and validation on Youtube","Successful search and validation on the site","ERROR","2024-08-04T23:23:01.8149212-05:00[America/Bogota]","0.0","0.23"
