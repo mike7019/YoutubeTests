@@ -468,6 +468,41 @@ public class ValidateTheCode implements Question<Boolean> {
 }
 ```
 
+#### GetTheText.java
+
+This Question gets the text of the tooltip using the getAttribute method to get the validationMessage
+```java
+public class GetTheText implements Question<Boolean> {
+
+    protected String element;
+    protected String popUpMessage;
+
+    private static final Logger LOGGER = Logger.getLogger(GetTheText.class.getName());
+
+    public GetTheText(String element, String popUpMessage) {
+        this.element = element;
+        this.popUpMessage = popUpMessage;
+    }
+
+    /**
+     * Determines if the pop-up message is displayed as a tooltip on the webpage.
+     *
+     * @param actor the actor who is performing the action
+     * @return true if the pop-up message is displayed as a tooltip, otherwise false
+     */
+    @Override
+    public Boolean answeredBy(Actor actor) {
+        String msg = BrowseTheWeb.as(actor).getDriver().findElement(By.xpath(POPUP)).getAttribute("validationMessage");
+        LOGGER.info("the tooltip displays: "+msg);
+        return msg.contains(popUpMessage);
+    }
+
+    public static Question<Boolean> ofPopUp(String element, String popUpMessage){
+        return new GetTheText(element, popUpMessage);
+    }
+}
+```
+
 #### ValidateTheTitle
 
 This Question works with string types, so the text will be extracted and return it to the class ready to being compared in the seeThat() method
